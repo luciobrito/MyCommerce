@@ -9,6 +9,7 @@ class Compra extends Model
 {
     protected $fillable = ['data_compra','forma_pagamento','desconto'];
     protected $table = 'compra';
+    public array $lista_produtos;
     public function produtos() : BelongsToMany
     {
         return $this->belongsToMany(Produto::class, 'produtos_compra', 'id_compra', 'id_produto');
