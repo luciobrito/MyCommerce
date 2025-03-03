@@ -40,17 +40,6 @@ class CompraController extends Controller
         }
     }
     public function index(){
-        $lista = array();
-        $compras = Compra::all();
-        foreach($compras as $compra){
-            $obj = [
-                'Compra' => $compra,
-                'Produtos' => ProdutoCompra::where('id_compra',3)
-                ->join('compra','compra.id', '=', 'produtos_compra.id_compra')
-                ->get()
-            ];
-            array_push($lista, $obj);
-        }
-        return $lista; 
+        return Compra::showAll();
     }
 }
