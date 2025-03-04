@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Compra;
 use App\Models\Estoque;
-use App\Models\Produto;
-use App\Models\ProdutoCompra;
-use App\Models\Venda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,6 +37,11 @@ class CompraController extends Controller
         }
     }
     public function index(){
-        return Compra::showAll();
+        $compras = Compra::all();
+        foreach($compras as $compra)
+        {
+            $compra['produtos'] = $compra->listaProdutos();
+        }
+        return $compras;
     }
 }

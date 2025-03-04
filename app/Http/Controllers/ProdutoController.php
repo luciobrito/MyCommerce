@@ -25,7 +25,7 @@ class ProdutoController extends Controller
         return Produto::all();
     }
     public function edit(Request $request){
-
+        
     }
     //Soft delete
     public function delete(){

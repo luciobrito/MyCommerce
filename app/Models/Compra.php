@@ -13,18 +13,13 @@ class Compra extends Model
     {
         return $this->belongsToMany(Produto::class, 'produtos_compra', 'id_compra', 'id_produto');
     }
-    //Mostra todas as compras junto com os nomes dos produtos
-    public static function showAll()
+    public function listaProdutos()
     {
-        $compras = Compra::all();
-        foreach($compras as $compra)
-        {
-            $compra["produtos"] = $compra->select('produtos.nome','produtos_compra.quantidade','produtos_compra.valor_unitario')
+            return $this->select('produtos.nome','produtos_compra.quantidade','produtos_compra.valor_unitario')
             ->join('produtos_compra', 'compra.id','=','produtos_compra.id_compra')
             ->join('produtos', 'produtos.id', '=', 'produtos_compra.id_produto')
-            ->where('compra.id', $compra->id)
+            ->where('compra.id', $this->id)
             ->get();
-        }
-        return $compras;
+        
     }
 }

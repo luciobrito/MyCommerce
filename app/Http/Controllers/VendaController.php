@@ -33,7 +33,11 @@ class VendaController extends Controller
         }
     }
     public function index(){
-        return Venda::select();
+        $vendas = Venda::all();
+        foreach($vendas as $venda){
+            $venda['produtos'] = $venda->listaProdutos();
+        }
+        return $vendas;
     }
     
 }
