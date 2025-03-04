@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Validators\Atributos;
 use App\Models\Estoque;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
     public function create(Request $request){
-        $data = $request->validate([
+        $rules = [
             'nome' => 'required',
-            'preco' => 'required',
-            'codigo_barra' => 'required',
+            'preco' => 'required|numeric',
+            'codigo_barra' => 'required|unique:produtos',
             'descricao' => 'required',
-        ]);
+        ];
+        $data = Validator::make($request->all(),$rules,[],Atributos::$atrb)->validate();
         if($produto = Produto::create($data)){
-            //Trocar a coluna na tabela para default = 0
             Estoque::create(['id_produto'=>$produto['id'], 'quantidade' => 0]);
             return response('Criado com sucesso',201);
         }

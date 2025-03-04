@@ -14,14 +14,16 @@ class CompraController extends Controller
         $data = $request->validate(
             [
                 'data_compra' => 'date|required',
-                'forma_pagamento' => 'required',
-                'desconto',
-                'itens' => 'array'
+                'forma_pagamento' => 'required|alpha',
+                'desconto' => 'numeric',
+                'itens' => 'array|present', //present
+                'itens.*.quantidade' => 'required|integer',
+                'itens.*.valor_unitario' => 'required|numeric'
                 ]
         );
         if($compra = Compra::create($data))
         {
-            foreach($request->itens as $item){
+            foreach($request->itens as $item){ 
                 DB::table('produtos_compra')->insert([
                     'id_produto'=>$item["id_produto"],
                     'id_compra'=> $compra["id"],
@@ -33,7 +35,6 @@ class CompraController extends Controller
                 ->aumentar($item["quantidade"]);
             }
                   
-           /* return response(var_dump($request));*/
         }
     }
     public function index(){

@@ -11,10 +11,11 @@ class VendaController extends Controller
 {
     public function create(Request $request){
         $data = $request->validate([
-            'data_venda' => 'date',
-            'forma_pagamento' => '',
-            'desconto',
-            'itens'
+            'data_venda' => 'required|date',
+            'forma_pagamento' => 'required|alpha',
+            'desconto' => 'numeric',
+            'itens' => 'array',
+            'itens.*.quantidade' => 'required|integer'
         ]);
         
         if($venda = Venda::create($data))
