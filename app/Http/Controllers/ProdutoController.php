@@ -20,7 +20,7 @@ class ProdutoController extends Controller
         $data = Validator::make($request->all(),$rules,[],Atributos::$atrb)->validate();
         if($produto = Produto::create($data)){
             Estoque::create(['id_produto'=>$produto['id'], 'quantidade' => 0]);
-            return response('Criado com sucesso',201);
+            return response(['message'=> 'Criado com sucesso.'],201);
         }
     }
     public function getAll(){
