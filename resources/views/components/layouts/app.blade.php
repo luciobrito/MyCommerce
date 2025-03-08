@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,7 +9,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" >
         {{ $slot }}
     </div>
 
