@@ -24,8 +24,12 @@ class ProdutoController extends Controller
         }
     }
     public function getAll(){
+        //Tentar fazer de um jeito melhor
         $produtos = Produto::all();
-        Produto::with('estoque.quantidade')->get();
+        foreach($produtos as $produto)
+        {
+            $produto['qnt_estoque'] = $produto->qntEstoque()["quantidade"];
+        }
         return $produtos;
     }
     public function edit(Request $request){

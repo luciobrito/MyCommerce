@@ -13,8 +13,10 @@ class Produto extends Model
         return $this->hasOne(Estoque::class,'id_produto','id');   
     }
     public function qntEstoque(){
-        $qntEstoque = $this->select('estoque.quantidade AS qntEstoque')
+        return $this->select('estoque.quantidade')
         ->join('estoque', 'produtos.id', '=', 'estoque.id_produto')
-        ->where('produtos.id',$this->id);
+        ->where('produtos.id',$this->id)
+        ->first();
+
     }
 }

@@ -6,7 +6,7 @@
             <div class="m-2 d-flex">
             <div >
                 <p class="m-0">{{ produto.nome }}</p>
-                <p>{{ /*Quantidade em estoque*/ 50}}</p>
+                <p>{{ produto.qnt_estoque }}</p>
             </div>
             {{ produto.codigo_barra }}
             <div class="">
