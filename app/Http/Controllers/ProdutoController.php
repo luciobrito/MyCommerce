@@ -24,7 +24,9 @@ class ProdutoController extends Controller
         }
     }
     public function getAll(){
-        return Produto::all();
+        $produtos = Produto::all();
+        Produto::with('estoque.quantidade')->get();
+        return $produtos;
     }
     public function edit(Request $request){
         
