@@ -1,0 +1,20 @@
+.card-panel{
+    display: block;
+}
+
+@media screen and (min-width: 600px) {
+    .card-size {
+      width: 25%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+.card-size{
+    width: auto;
+}
+.inner-card{
+    
+}
+.card-top{
+
+}
+  }

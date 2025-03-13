@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100 z-9 " style="margin: 0; top: 0;">
     <div class="container-fluid">
-      <a href="/" class="navbar-brand">Nome do app</a>
+      <a href="/" class="navbar-brand">MyCommerce</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

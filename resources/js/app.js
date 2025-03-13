@@ -6,6 +6,8 @@ import { router } from './Components/router';
 import './style.scss'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import axios from 'axios';
+//var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 
 axios.defaults.baseURL = 'http://localhost:8000/api'
 const app = createApp({});
