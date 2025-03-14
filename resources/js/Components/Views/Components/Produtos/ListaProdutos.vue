@@ -46,8 +46,8 @@
 
 
 <script>
-import instance from '../../Services/axiosConfig';
-import { dateOnly } from '../../Services/dateConverter';
+import instance from '../../../Services/axiosConfig';
+import { dateOnly } from '../../../Services/dateConverter';
 export default {
     name: "ListaProdutos",
     data() {

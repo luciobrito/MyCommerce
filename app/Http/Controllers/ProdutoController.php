@@ -25,7 +25,7 @@ class ProdutoController extends Controller
     }
     public function getAll(){
         //Tentar fazer de um jeito melhor
-        $produtos = Produto::all();
+        $produtos = Produto::orderByDesc('created_at')->get();
         foreach($produtos as $produto)
         {
             $produto['qnt_estoque'] = $produto->qntEstoque()["quantidade"];
