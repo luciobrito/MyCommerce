@@ -3,12 +3,12 @@
     <div class="w-100 d-flex justify-content-center">
         <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastro</button>
         <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#compraModal">Compra</button>
-        <CadastroModal/>
+        <CadastroModal />
         <CompraModal/>
     </div>
  
     <p class="m-2">Seus produtos:</p>
-    <ListaProdutos :key="1 /*Essa chave serve para re-renderizar*/"  />
+    <ListaProdutos :key="false /*Essa chave serve para re-renderizar*/"  />
 </template>
 
 <script>
@@ -21,6 +21,16 @@ export default {
         ListaProdutos,
         CadastroModal,
         CompraModal
+    },
+    data(){
+        return{
+            listaKey:false
+        }
+    },
+    methods: {
+        changeKey(){
+            this.listaKey = !this.listaKey
+        }
     }
 }
 
