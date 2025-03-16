@@ -14,7 +14,7 @@ class ProdutoController extends Controller
         $rules = [
             'nome' => 'required',
             'preco' => 'required|numeric',
-            'codigo_barra' => 'required|unique:produtos',
+            'codigo_barra' => 'required|unique:produtos|numeric',
             'descricao' => 'required',
         ];
         $data = Validator::make($request->all(),$rules,[],Atributos::$atrb)->validate();

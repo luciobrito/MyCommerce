@@ -8,7 +8,7 @@ class Atributos{
     public static $atrb = [
         'nome' => 'Nome',
         'preco' => 'Preço',
-        'codigo_barra' => 'Codigo de Barra',
+        'codigo_barra' => 'Código de Barra',
         'descricao' => 'Descrição',
     ];
  

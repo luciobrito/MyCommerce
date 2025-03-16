@@ -8,7 +8,7 @@
     </div>
  
     <p class="m-2">Seus produtos:</p>
-    <ListaProdutos :key="false /*Essa chave serve para re-renderizar*/"  />
+    <ListaProdutos :key="listaKey" />
 </template>
 
 <script>
@@ -29,7 +29,12 @@ export default {
     },
     methods: {
         changeKey(){
-            this.listaKey = !this.listaKey
+            this.listaKey++
+        }
+    },
+    watch:{
+        listaKey(){
+
         }
     }
 }

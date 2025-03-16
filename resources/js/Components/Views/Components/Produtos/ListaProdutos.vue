@@ -8,13 +8,8 @@
                 <!--Parte de cima do card-->
                 <div class="d-flex w-100 justify-content-between">
                     <p class="m-0 fw-bold">{{ produto.nome }}</p>
-                    <button
-                        class=""
-                        data-bs-toggle="collapse"
-                        :data-bs-target="'#cardDetails' + produto.id"
-                        aria-expanded="false"
-                        aria-controls="cardDetails"
-                    >
+                    <button class="" data-bs-toggle="collapse" :data-bs-target="'#cardDetails' + produto.id"
+                        aria-expanded="false" aria-controls="cardDetails">
                         <i class="bi bi-chevron-down"></i>
                     </button>
                 </div>
@@ -35,24 +30,14 @@
                     <p>Cadastro: {{ dateOnly(produto.created_at) }}</p>
                     <p>{{ produto.descricao }}</p>
                     <div class="d-flex justify-content-evenly">
-                                                <button
-                            class="btn btn-danger"
-                            data-bs-toggle="modal"
-                            data-bs-target="#excluirProdutoModal"
-                            @click="alterarIdModal(produto.id)"
-                        >
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirProdutoModal"
+                            @click="alterarIdModal(produto.id)">
                             <i class="bi bi-trash-fill"></i>Excluir Produto
                         </button>
-                        <button
-                            class="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editarProdutoModal"
-                            @click="alterarIdModal(produto.id)"
-                        >
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarProdutoModal"
+                            @click="alterarIdModal(produto.id)">
                             <i class="bi bi-pencil-square"></i> Editar Produto
                         </button>
-
-                        
                     </div>
                 </div>
             </div>
@@ -80,13 +65,10 @@ export default {
             produtos: [],
             collapsed: true,
             idModal: 0
-        };
-    },
+        };},
     created() {
         this.getProdutos();
-        
     },
-    
     methods: {
         getProdutos() {
             instance
@@ -101,7 +83,7 @@ export default {
         dateOnly(date) {
             return dateOnly(date);
         },
-        alterarIdModal(id){
+        alterarIdModal(id) {
             this.idModal = id;
         }
     },
