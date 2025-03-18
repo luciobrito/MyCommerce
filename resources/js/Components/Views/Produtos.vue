@@ -8,7 +8,7 @@
     </div>
  
     <p class="m-2">Seus produtos:</p>
-    <ListaProdutos :key="listaKey" />
+    <ListaProdutos :key="listaKey" ref="listaProdutos"/>
 </template>
 
 <script>
@@ -30,6 +30,9 @@ export default {
     methods: {
         changeKey(){
             this.listaKey++
+        },
+        updateList(){
+            this.$refs.listaProdutos.updateProdutos();
         }
     },
     watch:{

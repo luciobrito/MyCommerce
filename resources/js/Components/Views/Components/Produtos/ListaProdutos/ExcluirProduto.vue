@@ -36,7 +36,7 @@ import instance from '../../../../Services/axiosConfig';
         },
         methods:{
           deletarProduto(){
-            this.$parent.getProdutos();
+            this.$parent.updateProdutos();
             this.excluindo = true;
             instance.delete(`/produto/${this.idProduto}`)
             .then(()=>{this.excluindo = false; this.excluido = true})
@@ -46,6 +46,12 @@ import instance from '../../../../Services/axiosConfig';
           return{
             excluindo: false,
             excluido: false
+          }
+        },
+        watch:{
+          idProduto(){
+            this.excluido = false,
+            this.excluido = false
           }
         }
     }

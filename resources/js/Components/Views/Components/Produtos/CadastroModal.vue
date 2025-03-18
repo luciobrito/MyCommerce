@@ -121,7 +121,7 @@ import instance from "../../../Services/axiosConfig";
 export default {
     methods: {
         close() {
-            this.$parent.changeKey();
+            this.$parent.updateList();
         },
         cadastrarProduto() {
             console.log(this.cadFormData);
@@ -132,15 +132,17 @@ export default {
                     this.close();
                     this.ultimoProduto.nome = this.cadFormData.nome;
                     this.cadFormData = {};
+                    this.cadFormErrors = {};
                     this.setSuccessTrue();
                 })
                 .catch((error) => {
                     this.cadFormErrors = error.response.data.errors;
                 })
-                .finally(() => (this.carregando = false));
+                .finally(() => {this.carregando = false});
         },
         setSuccessTrue(){
             this.success = true
+            //5 segundos
             setTimeout(()=>{this.success = false}, 5000)
         }
     },

@@ -65,7 +65,8 @@ export default {
             produtos: [],
             collapsed: true,
             idModal: 0,
-            nomeProduto: ""
+            nomeProduto: "",
+            produtoUpdate : false
         };},
     created() {
         this.getProdutos();
@@ -87,7 +88,15 @@ export default {
         alterarIdModal(id, nome) {
             this.idModal = id;
             this.nomeProduto = nome
+        },
+        updateProdutos(){
+            this.produtoUpdate = !this.produtoUpdate
         }
     },
+    watch:{
+        produtoUpdate(){
+            this.getProdutos();
+        }
+    }
 };
 </script>
