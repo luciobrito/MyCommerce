@@ -25,6 +25,7 @@
                             class="form-control"
                             :class="{ 'is-invalid': this.cadFormErrors?.nome }"
                             id="validationNome"
+                            placeholder="Perfume Calabrezo"
                             aria-describedby="inputGroupPrepend3 validationNome"
                             required
                         />
@@ -94,16 +95,21 @@
                         data-bs-dismiss="modal"
                         @click="close"
                     >
-                        Cancelar
+                        Fechar
                     </button>
                     <button
                         type="button"
                         class="btn btn-primary"
                         @click="cadastrarProduto"
+                        :disabled="carregando"
                     >
-                        Cadastrar Produto
+                        {{ carregando ? "Carregando..." : "Cadastrar" }}
                     </button>
+                    <div class="alert alert-success w-100" role="alert" v-if="this.success">
+                        {{ this.ultimoProduto.nome }} cadastrado com sucesso!
+                    </div>
                 </div>
+                <!-- -->
             </div>
         </div>
     </div>
@@ -119,17 +125,24 @@ export default {
         },
         cadastrarProduto() {
             console.log(this.cadFormData);
+            this.carregando = true;
             instance
                 .post("/produto", this.cadFormData)
                 .then(() => {
                     this.close();
+                    this.ultimoProduto.nome = this.cadFormData.nome;
                     this.cadFormData = {};
+                    this.setSuccessTrue();
                 })
                 .catch((error) => {
                     this.cadFormErrors = error.response.data.errors;
                 })
-                .finally();
+                .finally(() => (this.carregando = false));
         },
+        setSuccessTrue(){
+            this.success = true
+            setTimeout(()=>{this.success = false}, 5000)
+        }
     },
     data() {
         return {
@@ -145,6 +158,11 @@ export default {
                 preco: "",
                 descricao: "",
             },
+            carregando: false,
+            success: false,
+            ultimoProduto:{
+                nome: ""
+            }
         };
     },
 };

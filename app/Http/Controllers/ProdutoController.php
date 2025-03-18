@@ -35,8 +35,17 @@ class ProdutoController extends Controller
     public function edit(Request $request){
         
     }
-    //Soft delete
-    public function delete(){
-
+    //Soft delete depois
+    public function delete($id){
+        $estoque = Estoque::where('id_produto', $id)->first();
+        $estoque->delete();
+        $produto = Produto::find($id);
+        $produto->delete();
+        return response(['message'=> 'Produto deletado com sucesso!'],200);
+    }
+    public function getById($id){
+        if($produto = Produto::find($id))
+            return $produto;
+        else return response(['message'=>'Produto não encontrado'], 404);
     }
 }

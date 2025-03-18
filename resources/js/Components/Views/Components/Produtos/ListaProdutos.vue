@@ -31,11 +31,11 @@
                     <p>{{ produto.descricao }}</p>
                     <div class="d-flex justify-content-evenly">
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirProdutoModal"
-                            @click="alterarIdModal(produto.id)">
+                            @click="alterarIdModal(produto.id, produto.nome)">
                             <i class="bi bi-trash-fill"></i>Excluir Produto
                         </button>
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarProdutoModal"
-                            @click="alterarIdModal(produto.id)">
+                            @click="alterarIdModal(produto.id, produto.nome)">
                             <i class="bi bi-pencil-square"></i> Editar Produto
                         </button>
                     </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <ExcluirProduto :idProduto="this.idModal" />
+    <ExcluirProduto :idProduto="this.idModal" :nomeProduto="this.nomeProduto" />
     <EditarProduto :idProdutoEditar="this.idModal" />
 </template>
 
@@ -64,7 +64,8 @@ export default {
         return {
             produtos: [],
             collapsed: true,
-            idModal: 0
+            idModal: 0,
+            nomeProduto: ""
         };},
     created() {
         this.getProdutos();
@@ -83,8 +84,9 @@ export default {
         dateOnly(date) {
             return dateOnly(date);
         },
-        alterarIdModal(id) {
+        alterarIdModal(id, nome) {
             this.idModal = id;
+            this.nomeProduto = nome
         }
     },
 };
