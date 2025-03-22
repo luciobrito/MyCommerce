@@ -12,15 +12,15 @@ class ProdutoController extends Controller
 {
     public function create(Request $request){
         $rules = [
-            'nome' => 'required',
+            'nome' => 'required|max:30',
             'preco' => 'required|numeric',
-            'codigo_barra' => 'required|unique:produtos|numeric',
-            'descricao' => 'required',
+            'codigo_barra' => 'required|unique:produtos|numeric|max:9|min:9',
+            'descricao' => 'required|max|60',
         ];
         $data = Validator::make($request->all(),$rules,[],Atributos::$atrb)->validate();
         if($produto = Produto::create($data)){
             Estoque::create(['id_produto'=>$produto['id'], 'quantidade' => 0]);
-            return response(['message'=> 'Criado com sucesso.'],201);
+            return response(['message'=> 'Produto criado com sucesso.'],201);
         }
     }
     public function getAll(){
@@ -28,7 +28,7 @@ class ProdutoController extends Controller
         $produtos = Produto::orderByDesc('created_at')->get();
         foreach($produtos as $produto)
         {
-            $produto['qnt_estoque'] = $produto->qntEstoque()["quantidade"];
+            $produto['qnt_estoque'] = $produto->estoque()->value('quantidade');
         }
         return $produtos;
     }
@@ -44,7 +44,7 @@ class ProdutoController extends Controller
         return response(['message'=> 'Produto deletado com sucesso!'],200);
     }
     public function getById($id){
-        if($produto = Produto::find($id))
+        if($produto = Produto::findAll($id))
             return $produto;
         else return response(['message'=>'Produto não encontrado'], 404);
     }
